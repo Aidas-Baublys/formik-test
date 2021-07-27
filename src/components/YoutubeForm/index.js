@@ -19,7 +19,11 @@ const validationSchema = Yup.object({
 	channel: Yup.string().required("Required.")
 });
 
-const onSubmit = values => console.log("Submited data: ", values);
+const onSubmit = (values, onSubmitProps) => {
+	console.log(onSubmitProps);
+	console.log("Submited data: ", values);
+	// onSubmitProps.resetForm();
+};
 
 function YoutubeForm() {
 	return (
@@ -84,7 +88,12 @@ function YoutubeForm() {
 						className="rounded-md p-2 w-full bg-gray-500"
 					/>
 				</div>
-				<button type="submit" className="border-2 border-black rounded-md w-20 mt-5">Submit</button>
+				<button
+					type="submit"
+					className="border-2 border-black rounded-md w-20 mt-5"
+				>
+					Submit
+				</button>
 			</Form>
 		</Formik>
 	);

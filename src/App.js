@@ -1,10 +1,11 @@
-import YoutubeForm from './components/YoutubeForm';
+
 import './App.css';
+import Home from './components/Home';
 
 function App() {
   return (
     <div className="App">
-      <YoutubeForm />
+      <Home />
     </div>
   );
 }
