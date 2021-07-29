@@ -1,7 +1,9 @@
-import { Container, Grid, Typography, TextField } from "@material-ui/core";
+import { Container, Grid, Typography, TextField, Button } from "@material-ui/core";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import Input from './Fields/Input';
+
+import Input from './Fields/UniversalInput';
+import CheckboxInput from "./Fields/CheckboxInput";
 
 const initialValues = {
   name: "",
@@ -14,6 +16,7 @@ const initialValues = {
   country: "",
   date: "",
   message: "",
+  termsOfService: false,
 };
 
 const validationSchema = Yup.object({
@@ -36,10 +39,13 @@ const validationSchema = Yup.object({
     .required("Required."),
   date: Yup.date("Invalid date.")
     .required("Required."),
-  message: Yup.string()
+  message: Yup.string(),
+  termsOfService: Yup.boolean()
+    .oneOf([true], "Please accept.")
+    .required("Required."),
 });
 
-const onSubmit = (values, formik) => {
+const onSubmit = (values) => {
   console.log("Submitted values:", values);
 };
 
@@ -51,7 +57,7 @@ function BookingForm() {
       </Typography>
       <Formik
         initialValues={initialValues}
-        // validationSchema={validationSchema}
+        validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
         <Form>
@@ -143,7 +149,20 @@ function BookingForm() {
                 minRows={5}
               />
             </Grid>
-            <button type="submit">Submit</button>
+            <Grid item xs={12}>
+              <CheckboxInput
+                name="termsOfService"
+                legend="Terms of Service"
+                label="I agree"
+              />
+            </Grid>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+            >
+              Submit
+            </Button>
           </Grid>
         </Form>
       </Formik>
