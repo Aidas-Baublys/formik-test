@@ -1,4 +1,4 @@
-import { Container, Grid, Typography } from "@material-ui/core";
+import { Container, Grid, Typography, TextField } from "@material-ui/core";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import Input from './Fields/Input';
@@ -12,6 +12,8 @@ const initialValues = {
   city: "",
   province: "",
   country: "",
+  date: "",
+  message: "",
 };
 
 const validationSchema = Yup.object({
@@ -20,7 +22,7 @@ const validationSchema = Yup.object({
   surname: Yup.string()
     .required("Required."),
   email: Yup.string()
-    .email("Invalid email format.")
+    .email("Invalid email.")
     .required("Required."),
   phone: Yup.string()
     .required("Required."),
@@ -32,6 +34,9 @@ const validationSchema = Yup.object({
     .required("Required."),
   country: Yup.string()
     .required("Required."),
+  date: Yup.date("Invalid date.")
+    .required("Required."),
+  message: Yup.string()
 });
 
 const onSubmit = (values, formik) => {
@@ -46,7 +51,7 @@ function BookingForm() {
       </Typography>
       <Formik
         initialValues={initialValues}
-        validationSchema={validationSchema}
+        // validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
         <Form>
@@ -107,6 +112,14 @@ function BookingForm() {
               <Input
                 name="country"
                 label="Country"
+                select
+                options={
+                  {
+                    "LT": "Lietuva",
+                    "LV": "Latvija",
+                    "EE": "Estija",
+                  }
+                }
               />
             </Grid>
             <Grid item xs={12}>
@@ -114,6 +127,23 @@ function BookingForm() {
                 Booking info
               </Typography>
             </Grid>
+            <Grid item xs={12}>
+              <Input
+                name="date"
+                label="Date"
+                type="date"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                name="message"
+                label="Message"
+                fullWidth
+                multiline
+                minRows={5}
+              />
+            </Grid>
+            <button type="submit">Submit</button>
           </Grid>
         </Form>
       </Formik>
