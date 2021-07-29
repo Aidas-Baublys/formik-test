@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.form {
+/* .form {
     @apply border-2 border-black rounded-md flex flex-col items-center p-10 pt-5 pb-5 m-5;
-}
+} */
 
 
