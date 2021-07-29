@@ -22,7 +22,6 @@ const validationSchema = Yup.object({
 const onSubmit = (values, onSubmitProps) => {
 	console.log(onSubmitProps);
 	console.log("Submited data: ", values);
-	// onSubmitProps.resetForm();
 };
 
 function YoutubeForm() {
